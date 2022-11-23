@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<table class="table table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Nom</th>
+				<th scope="col">Prénom</th>
+				<th scope="col">Sexe</th>
+				<th scope="col">Date de Naissance</th>
+				<th scope="col">Courriel</th>
+				<th scope="col">Téléphone</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr>
+				<td>{{  formateur.Nom }}</td>
+				<td>{{  formateur.Prenom  }}</td>
+				<td>{{  formateur.Sexe  }}</td>
+				<td>{{  formateur.Naissance | date('d/m/Y')}}</td>
+				<td>{{  formateur.Courriel }}</td>
+				<td>{{  formateur.Telephone }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<table class="table table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Sessions prévue</th>
+			</tr>
+		</thead>
+
+		{% for session_formateur in formateur.sessions %}
+			<tbody>
+				<tr>
+					<td>
+						<a href="">{{ session_formateur.LibelleSession }}</a>
+					</td>
+				</tr>
+			</tbody>
+		{% endfor %}
+	</table>
+{% endblock %}

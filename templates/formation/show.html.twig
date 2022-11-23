@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Session
+{% endblock %}
+
+{% block body %}
+
+	{% if formation.sessions | length > 0 %}
+		{# {% for session in formation.sessions %}
+					<a href=" {{ path('show_session', {'id': session.id }) }} ">{{ session.LibelleSession }}</a>
+		
+					{{ session.DateDebut | date('d/m/Y')}}
+					{{ session.DateFin | date('d/m/Y')}} #}
+
+		<table class="table table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Session</th>
+					<th scope="col">Date Début</th>
+					<th scope="col">Date Fin</th>
+					<th scope="col">Durée/jours</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for session in formation.sessions %}
+					<tr>
+						<td>
+							<a href=" {{ path('show_session', {'id': session.id }) }} ">{{ session.LibelleSession }}</a>
+						</td>
+						<td>{{ session.DateDebut | date('d/m/Y')}}</td>
+						<td>{{ session.DateFin | date('d/m/Y')}}</td>
+						<td>{{ session.Effectif }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+	{% else %}
+		Aucune Session
+	{% endif %}
+
+{% endblock %}

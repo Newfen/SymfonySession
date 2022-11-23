@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block Session %}{% endblock %}
+
+{% block body %}
+
+	<h1>Liste des Sessions
+		<span class="badge bg-dark text-white">{{ sessions | length}}</span>
+	</h1>
+
+
+	<a href="{{ path('add_session')}}">
+		<button type="button" class="btn btn-success">Ajouter une session</button>
+	</a>
+
+	<table class="table table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Session</th>
+				<th scope="col">Edit</th>
+				<th scope="col">Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for session in sessions %}
+				<tr>
+					<td>
+						<a href=" {{ path('show_session', {'id': session.id }) }} ">{{ session.LibelleSession }}</a>
+					</td>
+					<td>
+						 <a href="{{ path('update_session', {'id' : session.id}) }}"><img src="/img/editer.png"></a>
+					</td>
+					<td>
+						<a href="{{ path('delete_session', {'id' : session.id})}}"><img src="/img/trash-can.png"></a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

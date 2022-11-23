@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<body>
+
+		<div class="session-title">
+			<h1>{{session.LibelleSession}}</h1>
+
+			<h4>Places restantes :
+				<span class="badge bg-dark text-white">{{ session.effectif - session.stagiaires | length }}</span>
+			</h4>
+		</div>
+
+		<div class="main-session">
+			<div class="card">
+				<div class="card-header bg-dark text-white">
+					<strong>
+						Formateur Réferent :
+						{{ session.formateur.Prenom }}
+						{{  session.formateur.Nom  }}
+					</strong>
+				</div>
+				<div class="card-body">
+					<blockquote class="blockquote mb-0">
+						<p>
+							<strong>Date de début :</strong>
+							{{ session.DateDebut | date('d/m/Y')}}</p>
+						<p>
+							<strong>Date de fin :</strong>
+							{{ session.DateFin | date('d/m/Y')}}</p>
+						<p>
+							<strong>Nombre de stagiaire :</strong>
+							{{ session.Effectif }}</p>
+					</blockquote>
+				</div>
+			</div>
+
+<a href="{{ path('add_programme')}}">
+		<button type="button" class="btn btn-success">Ajouter une session</button>
+	</a>
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Module</th>
+						<th scope="col">Catégorie</th>
+						<th scope="col">Durée</th>
+						<th scope="col">Retirer</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for programme in session.programmes %}
+						<tr>
+							<td>{{ programme.module }}</td>
+							<td>{{ programme.module.idCategorie }}</td>
+							<td>{{ programme.duree }}</td>
+							<td><a href="{{ path('delete_programme_session', {'idSession' : session.id , 'idProgramme' : programme.id})}}"><img src="/img/logout.png"></a></td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+			<div class="stagiaire-session">
+				{% if session.stagiaires | length > 0 %}
+
+					<table class="table table-striped">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">Stagiaire(s) Inscrits :
+									<span class="badge bg-white text-dark">{{ session.stagiaires | length }}</span>
+								</th>
+								<th>Déprogrammer</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for stagiaire in session.stagiaires %}
+								<tr>
+									<td>
+										<a href=" {{ path('show_stagiaire', {'id': stagiaire.id }) }} ">{{ stagiaire.Nom }}
+											{{  stagiaire.Prenom  }}</a>
+									</td>
+									<td><a href="{{ path("deprogrammer_session",{'idSession': session.id, 'idStagiaire': stagiaire.id}) }}"><img src="/img/logout.png"></a></td>
+
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				{% endif %}
+
+				<table class="table table-striped non-inscrits">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">Stagiaire(s) non inscrits :
+								<span class="badge bg-white text-dark">{{ nonInscrits | length }}</span>
+							</th>
+							<th>Inscrire</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for stagiaire in nonInscrits %}
+							<tr>
+								<td>
+									<a href="#">{{ stagiaire.Nom }}
+										{{ stagiaire.Prenom}}</>
+								</td>
+								<td><a href="{{ path("programmer_session",{'idSession': session.id, 'idStagiaire': stagiaire.id}) }}"><img src="/img/sign-up.png"></a></td>
+								</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+{% endblock %}

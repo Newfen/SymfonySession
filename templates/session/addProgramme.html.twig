@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'un Module{% endblock %}
+
+{% block body %}
+    
+    <div class="form-group">
+    {{ form_start(formProgramme) }}
+    {{ form_widget(formProgramme) }}
+    {{ form_end(formProgramme) }}
+    </div>
+
+{% endblock %}

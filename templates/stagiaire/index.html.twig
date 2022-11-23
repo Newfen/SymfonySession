@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+	<h1>Liste des Stagiaires
+	<span class="badge bg-dark text-white">{{ stagiaires | length}}</span>
+	</h1>
+
+	<table class="table table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Stagiaire</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for stagiaire in stagiaires %}
+				<tr>
+					<td>
+						<a href=" {{ path('show_stagiaire', {'id': stagiaire.id }) }} ">{{ stagiaire.Nom }} {{  stagiaire.Prenom  }}</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

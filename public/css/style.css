@@ -1,0 +1,78 @@
+*{
+    font-size: 1.1rem;
+}
+
+.wrapper{
+    width: 1200px;
+    margin: auto;
+}
+
+h1{
+    margin: 1rem 0;
+}
+
+nav{
+    padding: 1rem;
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+ul{
+    gap: 3rem;
+    display: flex;
+    width: 1200px;
+    margin: auto;
+    justify-content: space-between;
+}
+
+nav a{
+    text-decoration: none;
+    color: white;
+}
+
+nav li{
+    list-style: none;
+}
+
+.list-group-item{
+    border-bottom: 1px solid black;
+}
+
+button{
+    margin: 2rem 0;
+}
+
+.stagiaire-session{
+    display: flex;
+    gap: 1rem;
+}
+
+
+.session-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.main-session{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.non-inscrits{
+    height: fit-content;
+}
+
+.right-nav{
+    display: flex;
+    gap: 1rem;
+}
+
+.left-nav{
+    display: flex;
+    gap: 1rem;
+}
